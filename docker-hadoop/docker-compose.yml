@@ -1,0 +1,48 @@
+version: "2"
+
+services:
+    hadoop:
+        extends:
+            file: ubuntu/ubuntu.yml
+            service: ubuntu
+        build:
+            context: ./hadoop-2.6.0
+            dockerfile: Dockerfile
+        image: hadoop-2.6.0
+        ports:
+            - "50010:50010"
+            - "50020:50020"
+            - "50070:50070"
+            - "50075:50075"
+            - "50090:50090"
+            - "8020:8020"
+            - "9000:9000"
+            - "10020:10020"
+            - "19888:19888"
+            - "8030:8030"
+            - "8031:8031"
+            - "8032:8032"
+            - "8033:8033"
+            - "8040:8040"
+            - "8042:8042"
+            - "8088:8088"
+            - "52023:22"
+    hive_pg:
+        depends_on:
+            - "hadoop"
+        extends:
+            file: ubuntu/ubuntu.yml
+            service: ubuntu
+        build:
+            context: ./hive_pg
+            dockerfile: Dockerfile
+        image: hive_pg
+        ports:
+            - "10000:10000"
+            - "10001:10001"
+            - "10002:10002"
+            - "10003:10003"
+            - "9083:9083"
+            - "50111:50111"
+            - "52024:22"
+            - "5432:5432"

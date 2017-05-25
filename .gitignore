@@ -5,5 +5,8 @@
 # IntelliJ project files
 .idea
 *.iml
+*.tar.gz
+*.tar
+
 out
 gen
